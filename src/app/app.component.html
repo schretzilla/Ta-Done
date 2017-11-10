@@ -1,9 +1,19 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div style="text-align:center">
   <h1>
-    Welcome to {{title}}!
+    {{title}}!
   </h1>
 </div>
+
+<div>
+    <h2>Projects</h2>
+    <ul>
+      <li *ngFor="let project of projects" (click)="onProjectSelect(project)">
+          <project-detail [project]="project"></project-detail>          
+      </li>
+    </ul>
+</div>
+
 <h2>List ToDo </h2>
 <ul>
   <li *ngFor="let todo of todos" (click)="onSelect(todo)">

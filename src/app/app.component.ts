@@ -1,24 +1,68 @@
 import { Component } from '@angular/core';
-
+import { ToDo } from './to-do';
+import { Project } from './project';
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
+  //templateUrl: './app.component.html',
+  template: `<div style="text-align:center">
+  <h1>
+    {{title}}!
+  </h1>
+</div>
+
+<div>
+    <h2>Projects</h2>
+    <ul>
+      <li *ngFor="let project of projects" (click)="onProjectSelect(project)">
+          <project-detail [project]="project"></project-detail>          
+      </li>
+    </ul>
+</div>
+
+<h2>List ToDo </h2>
+<ul>
+  <li *ngFor="let todo of todos" (click)="onSelect(todo)">
+    <!-- <span>{{todo.id}}</span> {{todo.message}} -->
+    <input id={{todo.id}}
+            (keyup.enter)="onEnterKey($event, todo)" 
+            (keyup.backspace)="onDeleteKey($event, todo)"
+            [(ngModel)]="todo.message">
+  </li>
+</ul>
+
+<div *ngIf="currentToDo">
+  <h2>{{currentToDo.message}}</h2>
+</div>`,
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'TaDone';
+  title = 'Ta-Done';
+  
+  //List of projects
+  firstProject = new Project(1);
+  projects = [ this.firstProject];
+  projectId = 2;
+
+  // The current selected project
+  currentProject = this.firstProject;
+
+  //The ToDo in current focus
   currentToDo: ToDo;
-  todos =  [ new ToDo("", 1)];
+
+  //List of ToDos
+  firstToDo = new ToDo(this.firstProject, 1, "")
+  todos =  [ this.firstToDo ];
   listId = 2;
 
   onSelect(todo: ToDo): void {
     this.currentToDo = todo;
   }
 
+  
   onEnterKey(event: KeyboardEvent, curItem: ToDo) {
     var index = this.todos.indexOf(curItem);
 
-    var newToDo = new ToDo("", this.listId);
+    var newToDo = new ToDo(this.currentProject, this.listId, "");
     this.todos.splice(index+1, 0, newToDo);   
     this.listId += 1;
 
@@ -57,14 +101,7 @@ export class AppComponent {
     nextElement.focus();
   }
 }
-export class ToDo {
-  id: number;
-  message: string;
 
-  constructor(message: string, id: number) {
-    this.message = message;
-    this.id = id;
-  }
-}
+
 
 

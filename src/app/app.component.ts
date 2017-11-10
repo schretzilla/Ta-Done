@@ -1,41 +1,18 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ToDo } from './to-do';
 import { Project } from './project';
 @Component({
   selector: 'app-root',
-  //templateUrl: './app.component.html',
-  template: `<div style="text-align:center">
-  <h1>
-    {{title}}!
-  </h1>
-</div>
-
-<div>
-    <h2>Projects</h2>
-    <ul>
-      <li *ngFor="let project of projects" (click)="onProjectSelect(project)">
-          <project-detail [project]="project"></project-detail>          
-      </li>
-    </ul>
-</div>
-
-<h2>List ToDo </h2>
-<ul>
-  <li *ngFor="let todo of todos" (click)="onSelect(todo)">
-    <!-- <span>{{todo.id}}</span> {{todo.message}} -->
-    <input id={{todo.id}}
-            (keyup.enter)="onEnterKey($event, todo)" 
-            (keyup.backspace)="onDeleteKey($event, todo)"
-            [(ngModel)]="todo.message">
-  </li>
-</ul>
-
-<div *ngIf="currentToDo">
-  <h2>{{currentToDo.message}}</h2>
-</div>`,
+  templateUrl: 'app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
+  constructor() { }
+
+  ngOnInit(){
+
+  }
+
   title = 'Ta-Done';
   
   //List of projects
@@ -58,14 +35,18 @@ export class AppComponent {
     this.currentToDo = todo;
   }
 
-  
+  // On Enter key add a todo to the todo list
   onEnterKey(event: KeyboardEvent, curItem: ToDo) {
     var index = this.todos.indexOf(curItem);
 
     var newToDo = new ToDo(this.currentProject, this.listId, "");
-    this.todos.splice(index+1, 0, newToDo);   
+    this.todos.splice(index+1, 0, newToDo);  
+    
+    //increment the list id of the todos
+    //TODO: this can just be the lenght of the list
     this.listId += 1;
-
+    
+    this.currentProject.toDoList.push(newToDo);
     // Set cursor focus 
     // this.setFocusOnInput(newToDo);
   }
@@ -95,12 +76,27 @@ export class AppComponent {
     }
   }
 
+  //Adds a new project to the projects list
+  addProject() {
+    let newProject = new Project(this.projectId);
+    this.projects.push(newProject);
+
+    //increment project id
+    this.projectId+=1;
+  }
+
+  // Sets the selected project as the current project
+  onProjectSelect(selectedProject: Project){
+    this.currentProject = selectedProject;
+  }
+
   setFocusOnInput(nextItem: ToDo){
     var nextElement = document.getElementById(String(nextItem.id));
     console.log(nextItem.id);
     nextElement.focus();
   }
 }
+
 
 
 

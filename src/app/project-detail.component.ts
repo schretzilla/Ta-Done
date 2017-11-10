@@ -3,11 +3,7 @@ import { Project } from './project';
 
 @Component({
   selector: 'project-detail',
-  template: `<input id={{project.id}}
-    (keyup.enter)="onEnterKey($event, project)" 
-    (keyup.backspace)="onDeleteKey($event, project)"
-    [(ngModel)]="project.name">
-  `
+  templateUrl: 'project-detail.component.html'
 })
 export class ProjectDetailComponent {
   @Input() project: Project;

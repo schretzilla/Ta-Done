@@ -6,7 +6,7 @@
 </div>
 
 <div>
-    <h2>Projects</h2>
+    <h2>Projects <button (click)="addProject()">Add Project</button></h2>
     <ul>
       <li *ngFor="let project of projects" (click)="onProjectSelect(project)">
           <project-detail [project]="project"></project-detail>          
@@ -14,9 +14,10 @@
     </ul>
 </div>
 
-<h2>List ToDo </h2>
+<h1>Project: {{currentProject.name}} </h1>
+<h2>To Do: </h2>
 <ul>
-  <li *ngFor="let todo of todos" (click)="onSelect(todo)">
+  <li *ngFor="let todo of currentProject.toDoList" (click)="onSelect(todo)">
     <!-- <span>{{todo.id}}</span> {{todo.message}} -->
     <input id={{todo.id}}
             (keyup.enter)="onEnterKey($event, todo)" 

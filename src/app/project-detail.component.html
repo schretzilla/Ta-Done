@@ -1,0 +1,4 @@
+<input id={{project.id}}
+(keyup.enter)="onEnterKey($event, project)" 
+(keyup.backspace)="onDeleteKey($event, project)"
+[(ngModel)]="project.name">

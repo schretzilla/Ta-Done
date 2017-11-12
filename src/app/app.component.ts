@@ -1,4 +1,7 @@
 import { Component, AfterViewInit, ViewChild } from '@angular/core';
+
+import { AppService } from './app.service';
+
 import { ToDo } from './to-do';
 import { Project } from './project';
 
@@ -6,15 +9,15 @@ import { ProjectComponent } from './project.component';
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
-  styleUrls: ['./app.component.css']
-})
-export class AppComponent implements AfterViewInit {
-  constructor() { }
+  styleUrls: ['./app.component.css'],
 
+  providers: [AppService]
+})
+export class AppComponent {
   title = 'Ta-Done';
   
-  @ViewChild(ProjectComponent)
-  private projectComponent: ProjectComponent;
+  // @ViewChild(ProjectComponent)
+  // private projectComponent: ProjectComponent;
   // //List of projects
   // firstProject = new Project(1);
   // projects = [ this.firstProject];
@@ -23,17 +26,28 @@ export class AppComponent implements AfterViewInit {
   //The ToDo in current focus
   currentToDo: ToDo;
   currentProject = new Project(1);
+  
+  //TODO: DELETE: just used for testign service name
+  currentProjectName = "";
   todos = [];
   listId = 2;  
 
-  ngAfterViewInit() {
-    // The current selected project
-    this.currentProject = this.projectComponent.firstProject;
-
-    //List of ToDos
-    var firstToDo = new ToDo(this.projectComponent.firstProject, 1, "")
-    this.todos =  [ firstToDo ];
+  constructor(private appService: AppService){
+    appService.currentProjectChanged$.subscribe(
+      projectName => {
+        this.currentProjectName = projectName;
+      }
+    );
   }
+
+  // ngAfterViewInit() {
+  //   // The current selected project
+  //   this.currentProject = this.projectComponent.firstProject;
+
+  //   //List of ToDos
+  //   var firstToDo = new ToDo(this.projectComponent.firstProject, 1, "")
+  //   this.todos =  [ firstToDo ];
+  // }
 
   onSelect(todo: ToDo): void {
     this.currentToDo = todo;

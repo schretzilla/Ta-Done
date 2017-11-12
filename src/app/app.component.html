@@ -6,15 +6,10 @@
 </div>
 
 <div>
-    <h2>Projects <button (click)="addProject()">Add Project</button></h2>
-    <ul>
-      <li *ngFor="let project of projects" (click)="onProjectSelect(project)">
-          <project-detail [project]="project"></project-detail>          
-      </li>
-    </ul>
+    <project></project>
 </div>
 
-<h1>Project: {{currentProject.name}} </h1>
+<h1>Project: {{currentProjectName}} </h1>
 <h2>To Do: </h2>
 <ul>
   <li *ngFor="let todo of currentProject.toDoList" (click)="onSelect(todo)">

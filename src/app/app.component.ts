@@ -1,35 +1,39 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, AfterViewInit, ViewChild } from '@angular/core';
 import { ToDo } from './to-do';
 import { Project } from './project';
+
+import { ProjectComponent } from './project.component';
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements AfterViewInit {
   constructor() { }
-
-  ngOnInit(){
-
-  }
 
   title = 'Ta-Done';
   
-  //List of projects
-  firstProject = new Project(1);
-  projects = [ this.firstProject];
-  projectId = 2;
-
-  // The current selected project
-  currentProject = this.firstProject;
+  @ViewChild(ProjectComponent)
+  private projectComponent: ProjectComponent;
+  // //List of projects
+  // firstProject = new Project(1);
+  // projects = [ this.firstProject];
+  // projectId = 2;
 
   //The ToDo in current focus
   currentToDo: ToDo;
+  currentProject = new Project(1);
+  todos = [];
+  listId = 2;  
 
-  //List of ToDos
-  firstToDo = new ToDo(this.firstProject, 1, "")
-  todos =  [ this.firstToDo ];
-  listId = 2;
+  ngAfterViewInit() {
+    // The current selected project
+    this.currentProject = this.projectComponent.firstProject;
+
+    //List of ToDos
+    var firstToDo = new ToDo(this.projectComponent.firstProject, 1, "")
+    this.todos =  [ firstToDo ];
+  }
 
   onSelect(todo: ToDo): void {
     this.currentToDo = todo;
@@ -74,20 +78,6 @@ export class AppComponent implements OnInit {
       // nextElement.focus();
       
     }
-  }
-
-  //Adds a new project to the projects list
-  addProject() {
-    let newProject = new Project(this.projectId);
-    this.projects.push(newProject);
-
-    //increment project id
-    this.projectId+=1;
-  }
-
-  // Sets the selected project as the current project
-  onProjectSelect(selectedProject: Project){
-    this.currentProject = selectedProject;
   }
 
   setFocusOnInput(nextItem: ToDo){

@@ -15,39 +15,21 @@ import { ProjectComponent } from './project.component';
 })
 export class AppComponent {
   title = 'Ta-Done';
-  
-  // @ViewChild(ProjectComponent)
-  // private projectComponent: ProjectComponent;
-  // //List of projects
-  // firstProject = new Project(1);
-  // projects = [ this.firstProject];
-  // projectId = 2;
 
   //The ToDo in current focus
   currentToDo: ToDo;
   currentProject = new Project(1);
   
-  //TODO: DELETE: just used for testign service name
-  currentProjectName = "";
   todos = [];
   listId = 2;  
 
   constructor(private appService: AppService){
     appService.currentProjectChanged$.subscribe(
-      projectName => {
-        this.currentProjectName = projectName;
+      project => {
+        this.currentProject = project
       }
     );
   }
-
-  // ngAfterViewInit() {
-  //   // The current selected project
-  //   this.currentProject = this.projectComponent.firstProject;
-
-  //   //List of ToDos
-  //   var firstToDo = new ToDo(this.projectComponent.firstProject, 1, "")
-  //   this.todos =  [ firstToDo ];
-  // }
 
   onSelect(todo: ToDo): void {
     this.currentToDo = todo;

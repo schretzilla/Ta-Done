@@ -9,6 +9,7 @@ export class AppService {
 
     // Observable string sources
     private CurrentProjectChangedSource = new Subject<Project>();
+    // private ToDoStatusChange = new Subject<
 
     // Observable string streams
     currentProjectChanged$ = this.CurrentProjectChangedSource.asObservable();
@@ -17,5 +18,7 @@ export class AppService {
     currentProjectChanged(projectName: Project) {
         this.CurrentProjectChangedSource.next(projectName);
     }
+
+
 
 }

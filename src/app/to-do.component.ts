@@ -48,10 +48,12 @@ export class ToDoComponent {
 
   completeItem(curItem: ToDo){
     curItem.complete = true;
-    var curIndex = this.currentProject.toDoList.indexOf(curItem);
-    this.currentProject.toDoList.splice(curIndex, 1);
     console.log("done item" + ToDo.name);
     
+  }
+
+  unCompleteItem(curItem: ToDo){
+    curItem.complete = false;
   }
 
   onDeleteKey(event: KeyboardEvent, curItem: ToDo) {

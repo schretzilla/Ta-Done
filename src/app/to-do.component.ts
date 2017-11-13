@@ -14,7 +14,6 @@ import { Project } from './project';
   })
 
 export class ToDoComponent {
-    //todos = [];
     listId = 2;
 
     currentProject = new Project(1);
@@ -46,14 +45,16 @@ export class ToDoComponent {
     // this.setFocusOnInput(newToDo);
   }
 
+  // Move an item from the To Do list to the completed list
   completeItem(curItem: ToDo){
-    curItem.complete = true;
-    console.log("done item" + ToDo.name);
-    
+    this.removeItem(curItem, this.currentProject.toDoList);
+    this.currentProject.doneList.push(curItem);
   }
 
+  // Move an item from the completed list back to the ToDo list
   unCompleteItem(curItem: ToDo){
-    curItem.complete = false;
+    this.removeItem(curItem, this.currentProject.doneList);    
+    this.currentProject.toDoList.push(curItem);
   }
 
   onDeleteKey(event: KeyboardEvent, curItem: ToDo) {
@@ -80,5 +81,11 @@ export class ToDoComponent {
       
     // }
     }
+  }
+
+  // Remove an item from the specified list
+  private removeItem(itemToRemove: ToDo, listToRemoveFrom: ToDo[]){
+    let curIndex = listToRemoveFrom.indexOf(itemToRemove);
+    listToRemoveFrom.splice(curIndex, 1);
   }
 }

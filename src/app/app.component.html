@@ -9,8 +9,7 @@
     <project></project>
 </div>
 
-<h1>Project: {{currentProjectName}} </h1>
-<h1>Actual Proj Obj's Name: {{currentProject.name}}</h1>
+<h1>Project: {{currentProject.name}} </h1>
 <h2>To Do: </h2>
 <ul>
   <li *ngFor="let todo of currentProject.toDoList" (click)="onSelect(todo)">

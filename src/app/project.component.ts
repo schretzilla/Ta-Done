@@ -5,13 +5,10 @@ import { Project } from './project';
 import  { AppService } from './app.service';
 import { Subscription } from 'rxjs/Subscription';
 
-// Project Detail Service
-import { ProjectService } from './project.service';
 
 @Component({
     selector: 'project',
     templateUrl: 'project.Component.html',
-    providers: [ProjectService]
 })
 
 export class ProjectComponent {
@@ -26,13 +23,7 @@ export class ProjectComponent {
     subscription: Subscription;
 
     //Constructor
-    constructor(private appService: AppService, private ProjectService: ProjectService) {
-        ProjectService.projectNameChanged$.subscribe(
-            projectName => {
-                this.currentProject.name = projectName;
-                
-            }
-        )
+    constructor(private appService: AppService) {
     }
 
     //Adds a new project to the projects list

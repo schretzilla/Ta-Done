@@ -12,13 +12,14 @@
 <h1>Project: {{currentProject.name}} </h1>
 <h2>To Do: </h2>
 <ul>
-  <li *ngFor="let todo of currentProject.toDoList" (click)="onSelect(todo)">
-    <!-- <span>{{todo.id}}</span> {{todo.message}} -->
+  <to-do></to-do>
+  <!-- <li *ngFor="let todo of currentProject.toDoList" (click)="onSelect(todo)">
+    <span>{{todo.id}}</span> {{todo.message}}
     <input id={{todo.id}}
             (keyup.enter)="onEnterKey($event, todo)" 
             (keyup.backspace)="onDeleteKey($event, todo)"
             [(ngModel)]="todo.message">
-  </li>
+  </li> --> 
 </ul>
 
 <div *ngIf="currentToDo">

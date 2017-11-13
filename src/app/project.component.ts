@@ -1,4 +1,4 @@
-import { Component, Output, OnDestroy } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { Project } from './project';
 
 // Services
@@ -24,6 +24,11 @@ export class ProjectComponent {
 
     //Constructor
     constructor(private appService: AppService) {
+        this.appService.currentProjectChanged$.subscribe(
+            project => {
+                console.log("Project Comp here")
+            }
+        );
     }
 
     //Adds a new project to the projects list
@@ -38,6 +43,8 @@ export class ProjectComponent {
     // Sets the selected project as the current project
     onProjectSelect(selectedProject: Project){
         this.currentProject = selectedProject;
-         this.appService.currentProjectChanged(selectedProject);
+        this.appService.currentProjectChanged(selectedProject);
+        console.log("Project changed in project comp");
+        
     }
 }

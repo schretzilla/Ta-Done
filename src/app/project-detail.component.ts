@@ -1,6 +1,9 @@
 import { Component, Input } from '@angular/core';
 import { Project } from './project';
 
+// Services
+import { AppService } from './app.service';
+
 @Component({
   selector: 'project-detail',
   templateUrl: 'project-detail.component.html'
@@ -8,4 +11,12 @@ import { Project } from './project';
 export class ProjectDetailComponent {
   @Input() project: Project;
 
+  constructor(private appService: AppService){
+    appService.currentProjectChanged$.subscribe(
+      project => {
+        console.log("project details hears it");
+        
+      }
+    );
+  }
 }

@@ -1,5 +1,4 @@
 //This is the highest level service
-
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
 
@@ -19,5 +18,4 @@ export class AppService {
         this.CurrentProjectChangedSource.next(projectName);
     }
 
-    //constructor() { }
 }

@@ -1,0 +1,7 @@
+<li *ngFor="let todo of currentProject.toDoList">
+        <!-- <span>{{todo.id}}</span> {{todo.message}} -->
+        <input id={{todo.id}}
+                (keyup.enter)="onEnterKey($event, todo)" 
+                (keyup.backspace)="onDeleteKey($event, todo)"
+                [(ngModel)]="todo.message">
+</li>

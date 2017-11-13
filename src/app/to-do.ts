@@ -5,7 +5,8 @@ export class ToDo {
     message: string;
     parent: Project;
     child: ToDo;
-  
+    complete = false;
+
     constructor(project: Project, id: number, message: string) {
       this.parent = project;
       this.message = message;

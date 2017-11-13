@@ -14,7 +14,7 @@ import { Project } from './project';
   })
 
 export class ToDoComponent {
-    todos = [];
+    //todos = [];
     listId = 2;
 
     currentProject = new Project(1);
@@ -32,35 +32,43 @@ export class ToDoComponent {
 
     // On Enter key add a todo to the todo list
   onEnterKey(event: KeyboardEvent, curItem: ToDo) {
-    var index = this.todos.indexOf(curItem);
+    var index = this.currentProject.toDoList.indexOf(curItem);
 
     var newToDo = new ToDo(this.currentProject, this.listId, "");
-    this.todos.splice(index+1, 0, newToDo);  
+    this.currentProject.toDoList.splice(index+1, 0, newToDo);  
     
     //increment the list id of the todos
     //TODO: this can just be the lenght of the list
     this.listId += 1;
     
-    this.currentProject.toDoList.push(newToDo);
+    //this.currentProject.toDoList.push(newToDo);
     // Set cursor focus 
     // this.setFocusOnInput(newToDo);
   }
 
+  completeItem(curItem: ToDo){
+    curItem.complete = true;
+    var curIndex = this.currentProject.toDoList.indexOf(curItem);
+    this.currentProject.toDoList.splice(curIndex, 1);
+    console.log("done item" + ToDo.name);
+    
+  }
+
   onDeleteKey(event: KeyboardEvent, curItem: ToDo) {
     // Only delete if the list isn't empty
-    if(this.todos.length > 1 && curItem.message == "")
+    if(this.currentProject.toDoList.length > 1 && curItem.message == "")
     {
-      var curIndex = this.todos.indexOf(curItem);
-      this.todos.splice(curIndex, 1);
+      var curIndex = this.currentProject.toDoList.indexOf(curItem);
+      this.currentProject.toDoList.splice(curIndex, 1);
 
       // Set focus to the next available text box
       var nextItem;
       if(curIndex == 0){
         // At start of list, move cursor one down
-        nextItem = this.todos[curIndex];
+        nextItem = this.currentProject.toDoList[curIndex];
       } else {
         // Anywhere else in list, move one up
-        nextItem = this.todos[curIndex-1];
+        nextItem = this.currentProject.toDoList[curIndex-1];
       }
 
     //   this.setFocusOnInput(nextItem);

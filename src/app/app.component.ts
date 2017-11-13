@@ -18,7 +18,6 @@ export class AppComponent {
   title = 'Ta-Done';
 
   //The ToDo in current focus
-  currentToDo: ToDo;
   currentProject = new Project(1);
 
   constructor(private appService: AppService){
@@ -29,10 +28,6 @@ export class AppComponent {
         
       }
     );
-  }
-
-  onSelect(todo: ToDo): void {
-    this.currentToDo = todo;
   }
 
   setFocusOnInput(nextItem: ToDo){

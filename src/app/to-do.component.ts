@@ -33,8 +33,10 @@ export class ToDoComponent {
   onEnterKey(event: KeyboardEvent, curItem: ToDo) {
     var index = this.currentProject.toDoList.indexOf(curItem);
 
-    var newToDo = new ToDo(this.currentProject, this.listId, "");
-    this.currentProject.toDoList.splice(index+1, 0, newToDo);  
+    this.addToDo(index);
+
+    // var newToDo = new ToDo(this.currentProject, this.listId, "");
+    // this.currentProject.toDoList.splice(index+1, 0, newToDo);  
     
     //increment the list id of the todos
     //TODO: this can just be the lenght of the list
@@ -45,16 +47,22 @@ export class ToDoComponent {
     // this.setFocusOnInput(newToDo);
   }
 
+  addToDo(index: number){
+    var newToDo = new ToDo(this.currentProject, this.listId, "");
+    this.currentProject.toDoList.splice(index+1, 0, newToDo);  
+    
+  }
+
   // Move an item from the To Do list to the completed list
   completeItem(curItem: ToDo){
     this.removeItem(curItem, this.currentProject.toDoList);
-    this.currentProject.doneList.push(curItem);
+    this.currentProject.doneList.unshift(curItem);
   }
 
   // Move an item from the completed list back to the ToDo list
   unCompleteItem(curItem: ToDo){
     this.removeItem(curItem, this.currentProject.doneList);    
-    this.currentProject.toDoList.push(curItem);
+    this.currentProject.toDoList.unshift(curItem);
   }
 
   onDeleteKey(event: KeyboardEvent, curItem: ToDo) {

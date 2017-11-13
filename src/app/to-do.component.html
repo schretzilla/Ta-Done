@@ -1,4 +1,9 @@
 <h2>To Do: </h2>
+
+<ul *ngIf="currentProject.toDoList.length == 0">
+        <button (click)=addToDo(0)>Add something to do</button>
+</ul>
+
 <ul>
         <li *ngFor="let todo of currentProject.toDoList">
                 <input
@@ -11,6 +16,11 @@
 </ul>
 
 <h2>Completed</h2>
+<ul *ngIf="currentProject.doneList.length == 0">
+        <span>
+                Nothing done yet!
+        </span>
+</ul>
 <ul>
         <li *ngFor="let todo of currentProject.doneList">
                 <span id={{todo.id}}>{{todo.message}}</span>

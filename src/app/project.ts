@@ -7,8 +7,7 @@ export class Project {
     doneList: ToDo[];
     constructor(id: number){
       this.id = id;
-      var firstToDo = new ToDo(this, 1, "");
-      this.toDoList = [firstToDo];
+      this.toDoList = [];
       this.doneList = [];
     }
 }

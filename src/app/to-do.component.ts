@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 // Services
 import { AppService } from './app.service';
@@ -24,33 +24,40 @@ export class ToDoComponent {
       this.subscription = appService.currentProjectChanged$.subscribe(
         project => {
           this.currentProject = project;
-          console.log("Project changed in todo");
+          //console.log("Project changed in todo");
         }
       );
+      
     }
 
     // On Enter key add a todo to the todo list
   onEnterKey(event: KeyboardEvent, curItem: ToDo) {
     var index = this.currentProject.toDoList.indexOf(curItem);
-
-    this.addToDo(index);
+    
+    this.listId += 1;
+    
+    let newToDo = this.addToDo(index);
 
     // var newToDo = new ToDo(this.currentProject, this.listId, "");
     // this.currentProject.toDoList.splice(index+1, 0, newToDo);  
     
     //increment the list id of the todos
     //TODO: this can just be the lenght of the list
-    this.listId += 1;
     
     //this.currentProject.toDoList.push(newToDo);
     // Set cursor focus 
-    // this.setFocusOnInput(newToDo);
+    //this.setFocusOnInput(newToDo);
+
+    // let newElement = document.getElementById("To-Do-Item-"+newToDo.id);
+    // console.log(newToDo.id);
+    // console.log(newElement.id);
+    
   }
 
   addToDo(index: number){
     var newToDo = new ToDo(this.currentProject, this.listId, "");
     this.currentProject.toDoList.splice(index+1, 0, newToDo);  
-    
+    return newToDo;
   }
 
   // Move an item from the To Do list to the completed list

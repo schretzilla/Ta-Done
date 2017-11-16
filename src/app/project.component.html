@@ -1,4 +1,5 @@
-<h2>Projects <button (click)="addProject()">Add Project</button></h2>
+<h2>Projects </h2>
+<button (click)="addProject()">Add Project</button>
 <ul>
   <li *ngFor="let project of projects" (click)="onProjectSelect(project)">
       <project-detail [project]="project"></project-detail>          

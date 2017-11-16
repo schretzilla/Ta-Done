@@ -7,6 +7,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
     
+    <!-- Style so left side bar extends to bottom of page-->
     <style>
       #main-list {
         min-height:100vh;
@@ -48,9 +49,20 @@
           </nav>      
       
         <main id="main-list" role="main" class="col-sm-9 ml-sm-auto col-md-10 pt-3">
-              <h1>Project: {{currentProject.name}} </h1> 
-              
+          <ng-container *ngIf="currentProject==null; else currentProjectExists">
+            <h1>Welcome!</h1>
+            <p>Click the "Create a Project" button on the left to create your
+              first project.
+            </p>
+          </ng-container>
+          <ng-template #currentProjectExists>
+              <h1>Project:
+                  <input id={{currentProject.id}} [(ngModel)]="currentProject.name">
+              </h1> 
+                
               <to-do></to-do>
+          </ng-template>
+            
               
         </main>
         

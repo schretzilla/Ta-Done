@@ -14,26 +14,33 @@ import { Subscription } from 'rxjs/Subscription';
 export class ProjectComponent {
 
     //List of projects
-    firstProject = new Project(1);
-    projects = [ this.firstProject];
-    projectId = 2;
-    currentProject = this.firstProject;
+    projects = [];
+    currentProject = null;
+    projectId = 1;
 
     // Subscription
     subscription: Subscription;
 
     //Constructor
     constructor(private appService: AppService) {
+        // Initialize first project
+        // let firstProject = new Project(1);
+        // firstProject.name = "My First Project";
+        // this.projects.push(firstProject);
+
         this.appService.currentProjectChanged$.subscribe(
             project => {
                 console.log("Project Comp here")
             }
         );
+        console.log(this.currentProject);
+        
     }
 
     //Adds a new project to the projects list
     addProject() {
         let newProject = new Project(this.projectId);
+        newProject.name = "New Project";
         this.projects.push(newProject);
 
         //increment project id

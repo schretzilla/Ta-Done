@@ -18,7 +18,7 @@ export class AppComponent {
   title = 'Ta-Done';
 
   //The ToDo in current focus
-  currentProject = new Project(1);
+  currentProject = null;
 
   constructor(private appService: AppService){
     appService.currentProjectChanged$.subscribe(

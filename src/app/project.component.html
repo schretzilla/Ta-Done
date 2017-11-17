@@ -1,4 +1,8 @@
-<h2>Projects <button (click)="addProject()">Add Project</button></h2>
+<h2>Projects 
+  <button type="button" class="btn btn-success" (click)="addProject()">
+      Add 
+    </button>
+</h2>
 
 <ul>
   <li *ngFor="let project of projects" (click)="onProjectSelect(project)">

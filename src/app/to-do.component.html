@@ -1,20 +1,26 @@
 <div class="row">
         <div class="col-md-6">
-                <h2>To Do: </h2>
+                <h2>
+                  To Do:                         
+                  <button type="button" class="btn btn-success btn-sm" (click)=addToDo(0)>Add</button>
+                </h2>
 
                 <ul *ngIf="currentProject.toDoList.length == 0">
-                        <button (click)=addToDo(0)>Add something to do!</button>
+                  You've got nothting to do for this project!
                 </ul>
 
                 <ul>
-                        <li *ngFor="let todo of currentProject.toDoList">
-                                <input
-                                        [id]="'To-Do-Item-'+todo.id"
-                                        (keyup.enter)="onEnterKey($event, todo)" 
-                                        (keyup.backspace)="onDeleteKey($event, todo)"
-                                        [(ngModel)]="todo.message">
-                                <button (click)=completeItem(todo)>Done!</button>
-                        </li>
+										<li *ngFor="let todo of currentProject.toDoList">
+												<input
+																[id]="'To-Do-Item-'+todo.id"
+																(keyup.enter)="onEnterKey($event, todo)" 
+																(keyup.backspace)="onDeleteKey($event, todo)"
+																[(ngModel)]="todo.message">
+									
+												<button type="button" 
+												class="btn btn-primary btn-sm" 
+												(click)=completeItem(todo)>Done!</button>
+										</li>
                 </ul>
         </div>
 
@@ -28,7 +34,9 @@
                 <ul>
                         <li *ngFor="let todo of currentProject.doneList">
                                 <span id={{todo.id}}>{{todo.message}}</span>
-                                <button (click)=unCompleteItem(todo)>Not Done!</button>  
+																<button type="button"
+																class="btn btn-danger btn-sm"
+																(click)=unCompleteItem(todo)>Not Done!</button>  
                         </li>
                 </ul>   
         </div>

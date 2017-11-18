@@ -3,11 +3,11 @@ import { NgModule } from '@angular/core';
 import { FormsModule }   from '@angular/forms'; // <-- NgModel lives here
 
 import { AppComponent } from './app.component';
-import { ProjectDetailComponent } from './project-detail.component';
-import { ProjectComponent } from './project.component';
-import { ToDoComponent } from './to-do.component';
+import { ProjectDetailComponent } from './project/project-detail.component';
+import { ProjectComponent } from './project/project.component';
+import { ToDoComponent } from './to-do/to-do.component';
 
-import { HeaderComponent } from './header.component';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   declarations: [

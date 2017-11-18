@@ -1,4 +1,4 @@
-import { ToDo } from './to-do';
+import { ToDo } from '../to-do/to-do';
 
 export class Project {
     id: number;

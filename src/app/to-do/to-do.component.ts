@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 
 // Services
-import { AppService } from './app.service';
+import { AppService } from '../app.service';
 import { Subscription }   from 'rxjs/Subscription';
 
 // Necessary Classs
 import { ToDo } from './to-do';
-import { Project } from './project';
+import { Project } from '../project/project';
 
 @Component({
     selector: 'to-do',

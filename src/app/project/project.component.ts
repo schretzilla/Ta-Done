@@ -2,7 +2,7 @@ import { Component, OnDestroy } from '@angular/core';
 import { Project } from './project';
 
 // Services
-import  { AppService } from './app.service';
+import  { AppService } from '../app.service';
 import { Subscription } from 'rxjs/Subscription';
 
 

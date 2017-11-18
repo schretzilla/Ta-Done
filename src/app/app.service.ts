@@ -2,7 +2,7 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
 
-import { Project } from './project';
+import { Project } from './project/project';
 
 @Injectable()
 export class AppService {

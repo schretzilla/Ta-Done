@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { Project } from './project';
 
 // Services
-import { AppService } from './app.service';
+import { AppService } from '../app.service';
 
 @Component({
   selector: 'project-detail',

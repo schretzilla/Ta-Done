@@ -4,8 +4,8 @@ import { Component } from '@angular/core';
 import { AppService } from './app.service';
 
 // Necessary Classes
-import { ToDo } from './to-do';
-import { Project } from './project';
+import { ToDo } from './to-do/to-do';
+import { Project } from './project/project';
 
 @Component({
   selector: 'app-root',

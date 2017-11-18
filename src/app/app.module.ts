@@ -7,12 +7,15 @@ import { ProjectDetailComponent } from './project-detail.component';
 import { ProjectComponent } from './project.component';
 import { ToDoComponent } from './to-do.component';
 
+import { HeaderComponent } from './header.component';
+
 @NgModule({
   declarations: [
     AppComponent,
     ProjectDetailComponent,
     ProjectComponent,
-    ToDoComponent
+    ToDoComponent,
+    HeaderComponent,
   ],
   imports: [
     BrowserModule,

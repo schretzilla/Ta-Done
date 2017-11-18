@@ -1,13 +1,11 @@
-<ul class="list-unstyled components">
-    <li class="nav-item">
-        <a class="nav-link" href="#">
-            <ng-container *ngIf="project.name != ''; else projectNameless" >
-                {{project.name}}
-            </ng-container>
-            <ng-template #projectNameless>
-                [No Name]
-            </ng-template>
-        </a>
-        
-    </li>
-</ul>
+
+<!-- TODO: Have bullets next to your nav's but the example doesnt -->
+<a class="nav-link" href="#"> <!-- add active -->
+    <ng-container *ngIf="project.name != ''; else projectNameless" >
+        {{project.name}}
+    </ng-container>
+    <ng-template #projectNameless>
+        [No Name]
+    </ng-template>
+</a>
+

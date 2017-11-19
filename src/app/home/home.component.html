@@ -16,7 +16,8 @@
           </ng-container>
           <ng-template #currentProjectExists>
               <h1>Project:
-                  <input id={{currentProject.id}} [(ngModel)]="currentProject.name">
+                  <input id={{currentProject.id}} [(ngModel)]="currentProject.name"
+                  (ngModelChange)="projectNameChange(currentProject)">
               </h1> 
                 
               <to-do></to-do>

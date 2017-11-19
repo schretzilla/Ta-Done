@@ -26,6 +26,7 @@ export class ProjectComponent implements OnInit {
 
     //Constructor
     constructor(private appService: AppService) {
+        //TODO is this needed? 
         this.appService.currentProjectChanged$.subscribe(
             project => {
                 console.log("Project Comp here")
@@ -44,13 +45,8 @@ export class ProjectComponent implements OnInit {
         this.projects.push(newProject);
 
         //increment project id
-        this.projectId+=1;
-
-        //store in local storage
-        // let testProjects = JSON.parse(localStorage.getItem('projects'));
-        // testProjects.push(newProject);        
+        this.projectId+=1;    
         localStorage.setItem('projects', JSON.stringify(this.projects));
-        // console.log(testProjects);
     }
 
     // Sets the selected project as the current project

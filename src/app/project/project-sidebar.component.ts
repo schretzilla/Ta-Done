@@ -43,23 +43,20 @@ export class ProjectSidebarComponent implements OnInit{
     }
 
     ngOnInit() {
-        //TODO - split out into service
-        
-        this.projects = JSON.parse(localStorage.getItem('projects'));
-        
-        // Check if this is a fresh session
-        if (this.projects == null ){
-            //fresh session
-            this.projects = [];
-        }
+        // Load the sessions projects
+        this.projects = this.appService.getProjects();
     }
 
     //Adds a new project to the projects list
     addProject() {
         let newProject = new Project(this.projectId);
         newProject.name = "New Project";
-        this.projects.push(newProject);
+        // this.projects.push(newProject);
+        this.appService.addProjects(newProject);
 
+        // let whipeProjects = [];
+        // localStorage.setItem('projects', JSON.stringify(whipeProjects)); 
+           
         //increment project id
         this.projectId+=1;
     }

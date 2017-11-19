@@ -8,7 +8,7 @@ import { ProjectComponent } from './project/project.component';
 import { ToDoComponent } from './to-do/to-do.component';
 
 import { HeaderComponent } from './header/header.component';
-
+import { HomeComponent } from './home/home.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -16,6 +16,7 @@ import { HeaderComponent } from './header/header.component';
     ProjectComponent,
     ToDoComponent,
     HeaderComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,

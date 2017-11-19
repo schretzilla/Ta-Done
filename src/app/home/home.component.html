@@ -1,0 +1,29 @@
+<body>
+    <app-header></app-header>
+    
+    <div class="container-fluid">
+      <div class="row">
+        <nav class="col-sm-3 col-md-2 sidebar">
+            <project></project>
+        </nav>      
+      
+        <main role="main" class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+          <ng-container *ngIf="currentProject==null; else currentProjectExists">
+            <h1>Welcome!</h1>
+            <p>Click the "Create a Project" button on the left to create your
+              first project.
+            </p>
+          </ng-container>
+          <ng-template #currentProjectExists>
+              <h1>Project:
+                  <input id={{currentProject.id}} [(ngModel)]="currentProject.name">
+              </h1> 
+                
+              <to-do></to-do>
+          </ng-template>
+        </main>
+        
+    </div>
+  </div>
+  
+</body>

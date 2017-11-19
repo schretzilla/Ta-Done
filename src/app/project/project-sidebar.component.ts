@@ -8,7 +8,7 @@ import { Subscription } from 'rxjs/Subscription';
 
 @Component({
     selector: 'project-sidebar',
-    templateUrl: 'project.Component.html',
+    templateUrl: 'project-sidebar.component.html',
     styleUrls: ['../app.component.css'],    
 })
 

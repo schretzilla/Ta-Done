@@ -1,9 +1,10 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Project } from './project';
 
 // Services
 import  { AppService } from '../app.service';
 import { Subscription } from 'rxjs/Subscription';
+import { log } from 'util';
 
 
 @Component({
@@ -12,7 +13,7 @@ import { Subscription } from 'rxjs/Subscription';
     styleUrls: ['../app.component.css'],    
 })
 
-export class ProjectSidebarComponent {
+export class ProjectSidebarComponent implements OnInit{
 
     //List of projects
     projects = [];
@@ -36,6 +37,21 @@ export class ProjectSidebarComponent {
         );
         console.log(this.currentProject);
         
+        let testProject = JSON.parse(localStorage.getItem('projects'));
+        
+        console.log('test project storage ' + testProject.name);
+    }
+
+    ngOnInit() {
+        //TODO - split out into service
+        
+        this.projects = JSON.parse(localStorage.getItem('projects'));
+        
+        // Check if this is a fresh session
+        if (this.projects == null ){
+            //fresh session
+            this.projects = [];
+        }
     }
 
     //Adds a new project to the projects list

@@ -1,9 +1,10 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Project } from './project';
 
 // Services
 import  { AppService } from '../app.service';
 import { Subscription } from 'rxjs/Subscription';
+import { log } from 'util';
 
 
 @Component({
@@ -13,7 +14,7 @@ import { Subscription } from 'rxjs/Subscription';
     
 })
 
-export class ProjectComponent {
+export class ProjectComponent implements OnInit {
 
     //List of projects
     projects = [];
@@ -25,18 +26,15 @@ export class ProjectComponent {
 
     //Constructor
     constructor(private appService: AppService) {
-        // Initialize first project
-        // let firstProject = new Project(1);
-        // firstProject.name = "My First Project";
-        // this.projects.push(firstProject);
-
         this.appService.currentProjectChanged$.subscribe(
             project => {
                 console.log("Project Comp here")
             }
         );
-        console.log(this.currentProject);
-        
+    }
+
+    ngOnInit() {
+        this.projects =this.appService.getProjects();
     }
 
     //Adds a new project to the projects list
@@ -47,13 +45,18 @@ export class ProjectComponent {
 
         //increment project id
         this.projectId+=1;
+
+        //store in local storage
+        // let testProjects = JSON.parse(localStorage.getItem('projects'));
+        // testProjects.push(newProject);        
+        localStorage.setItem('projects', JSON.stringify(this.projects));
+        // console.log(testProjects);
     }
 
     // Sets the selected project as the current project
     onProjectSelect(selectedProject: Project){
         this.currentProject = selectedProject;
         this.appService.currentProjectChanged(selectedProject);
-        console.log("Project changed in project comp");
         
     }
 }

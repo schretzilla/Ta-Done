@@ -9,7 +9,8 @@ export class AppService {
 
     // Observable string sources
     private CurrentProjectChangedSource = new Subject<Project>();
-    // private ToDoStatusChange = new Subject<
+
+    // private ProjectAddedsource = new Subject<Project>();
 
     // Observable string streams
     currentProjectChanged$ = this.CurrentProjectChangedSource.asObservable();
@@ -19,6 +20,15 @@ export class AppService {
         this.CurrentProjectChangedSource.next(projectName);
     }
 
+    // Gets all projects or returns an empty list if none exist in the session
+    getProjects() {
+        let projects = JSON.parse(localStorage.getItem('projects'));  
 
+        // Set to an empty list during a fresh session
+        if (projects == null ){
+            projects = [];
+        }
+        return projects;
+    }
 
 }

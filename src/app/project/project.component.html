@@ -1,18 +1,29 @@
 <body>
   <app-header></app-header>
 
-  <h2>Projects </h2>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-6 col-sm-offset-3">
+        <h1>Projects <button type="button" class="btn btn-success btn-large" 
+          (click)="addProject()">
+            Add 
+          </button>
+        </h1>
 
-  <ul>
-    <li *ngFor="let project of projects" 
-      (click)="onProjectSelect(project)">
-        <project-detail [project]="project"></project-detail>          
-    </li>
-    <li>
-        <button type="button" class="btn btn-success btn-large btn-block" (click)="addProject()">
-          Add 
-        </button>
-      </li>
-  </ul>
-
+        <!-- <ul> -->
+          <h2 *ngFor="let project of projects" 
+            (click)="onProjectSelect(project)">
+            <a> <!-- add active -->
+              <ng-container *ngIf="project.name != ''; else projectNameless" >
+                  {{project.name}}
+              </ng-container>
+              <ng-template #projectNameless>
+                  [No Name]
+              </ng-template>
+          </a>     
+        </h2>
+        <!-- </ul> -->
+      </div> <!-- End Col -->
+    </div> <!-- End Row -->
+  </div> <!-- end container -->
 </body>

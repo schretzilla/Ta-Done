@@ -9,12 +9,14 @@ import { AppComponent } from './app.component';
 import { ProjectDetailComponent } from './project/project-detail.component';
 import { ProjectComponent } from './project/project.component';
 import { ToDoComponent } from './to-do/to-do.component';
+import { ProjectSidebarComponent } from './project/project-sidebar.component';
 
 import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
+  { path: 'projects', component: ProjectComponent },
 ];
 
 @NgModule({
@@ -25,6 +27,7 @@ const appRoutes: Routes = [
     ToDoComponent,
     HeaderComponent,
     HomeComponent,
+    ProjectSidebarComponent,
   ],
   imports: [
     BrowserModule,

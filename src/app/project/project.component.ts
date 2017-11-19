@@ -9,6 +9,8 @@ import { Subscription } from 'rxjs/Subscription';
 @Component({
     selector: 'project',
     templateUrl: 'project.Component.html',
+    styleUrls: ['../app.component.css', './project.component.css'],
+    
 })
 
 export class ProjectComponent {

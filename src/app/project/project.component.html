@@ -1,14 +1,18 @@
-<h2>Projects </h2>
+<body>
+  <app-header></app-header>
 
-<ul class="nav nav-sidebar">
-  <li *ngFor="let project of projects" 
-    (click)="onProjectSelect(project)"
-    class="nav-item">
-      <project-detail [project]="project"></project-detail>          
-  </li>
-  <li>
-      <button type="button" class="btn btn-success btn-large btn-block" (click)="addProject()">
-        Add 
-      </button>
+  <h2>Projects </h2>
+
+  <ul>
+    <li *ngFor="let project of projects" 
+      (click)="onProjectSelect(project)">
+        <project-detail [project]="project"></project-detail>          
     </li>
-</ul>
+    <li>
+        <button type="button" class="btn btn-success btn-large btn-block" (click)="addProject()">
+          Add 
+        </button>
+      </li>
+  </ul>
+
+</body>

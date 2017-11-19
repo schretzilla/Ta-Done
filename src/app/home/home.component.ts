@@ -29,23 +29,11 @@ export class HomeComponent {
     );
   }
 
+  // Persist project name changes to storage
   projectNameChange(currentProject: Project){
     this.appService.updateProject(currentProject);
-
-    // console.log("Project new name " + currentProject.name);
-    // let projects = this.appService.getProjects();
-    // console.log(projects);
-    // let projectToUpdate = projects.find(x => x.id == currentProject.id);
-    // let indexOfProjToUpdate = projects.indexOf(projectToUpdate);
-    // console.log("project to update " + projectToUpdate.name);
-    // console.log("project to updates index " + indexOfProjToUpdate);
-
-    // //update projects list
-    // projects[indexOfProjToUpdate] = currentProject;
-    // localStorage.setItem('projects', JSON.stringify(projects));
-
-    // projec
   }
+
   setFocusOnInput(nextItem: ToDo){
     var nextElement = document.getElementById(String(nextItem.id));
     console.log(nextItem.id);

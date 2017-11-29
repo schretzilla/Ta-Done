@@ -19,8 +19,10 @@ export class ProjectComponent implements OnInit {
 	//List of projects
 	projects = [];
 	currentProject = null;
-	projectId = 1;
 
+	// Stores the next available project id;
+	projectId = 0;
+	
 	// Subscription
 	subscription: Subscription;
 
@@ -34,8 +36,9 @@ export class ProjectComponent implements OnInit {
 		);
 	}
 
-	ngOnInit() {
+	ngOnInit() {		
 		this.projects =this.appService.getProjects();
+		this.projectId = this.getMaxProjectId();
 	}
 
 	//Adds a new project to the projects list
@@ -55,5 +58,20 @@ export class ProjectComponent implements OnInit {
 		this.currentProject = selectedProject;
 		this.appService.currentProjectChanged(selectedProject);
 			
+	}
+
+	// Find the next ID for the list of projects
+	// TODO: Use until database is created
+	getMaxProjectId(){
+		let maxProjectId = 1;
+		for(let i=0; i<this.projects.length; i++){
+			let curProject = this.projects[i];
+			if(curProject.id > maxProjectId){
+				maxProjectId = curProject.id;
+			}
+		}
+		//increment the max project id by 1
+		maxProjectId += 1;
+		return maxProjectId;
 	}
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 // Services
 import { AppService } from '../app.service';
@@ -14,24 +14,23 @@ import { Project } from '../project/project';
   })
 
 export class ToDoComponent {
-    listId = 2;
 
-    currentProject = null;
+  listId = 2;
 
-    subscription: Subscription;
+  // The project in focus
+  @Input() currentProject: Project;
 
-    constructor(private appService: AppService){
-      let projects = this.appService.getProjects();
-      this.currentProject = projects[0];
-      console.log("looking at current porject value " + this.currentProject);
-      this.subscription = appService.currentProjectChanged$.subscribe(
-        project => {
-          console.log("Hears project change to " + project.name);
-          this.currentProject = project;
-        }
-      );
-      
-    }
+  subscription: Subscription;
+
+  constructor(private appService: AppService){
+    console.log("looking at current porject value " + this.currentProject);
+    this.subscription = appService.currentProjectChanged$.subscribe(
+      project => {
+        this.currentProject = project;
+      }
+    );
+    
+  }
 
     // On Enter key add a todo to the todo list
   // onEnterKey(event: KeyboardEvent, curItem: ToDo) {

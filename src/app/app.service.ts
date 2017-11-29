@@ -52,17 +52,9 @@ export class AppService {
   // Add a new project to the project local storage
   addProjects(newProject: Project) {
     let projects = JSON.parse(localStorage.getItem('projects')); 
-    console.log(projects); 
+    console.log("Project added" + projects); 
     projects.push(newProject);
     localStorage.setItem('projects', JSON.stringify(projects));    
-  }
-
-  // Add a new ToDo to the parent Project
-  addToDo(parentProject: Project, newToDo: ToDo){
-    let projects = this.getProjects();
-    let projectToUpdate = projects.find(x => x.id == parentProject.id);
-    projectToUpdate.toDoList.push(newToDo);
-    this.updateProject(projectToUpdate);
   }
 
 }

@@ -58,10 +58,8 @@ export class ToDoComponent {
 
   addToDo(index: number){
     var newToDo = new ToDo(this.currentProject, this.listId, "");
-    // this.currentProject.toDoList.splice(index+1, 0, newToDo);  
     this.currentProject.toDoList.push(newToDo);
-    // this.appService.updateProject(this.currentProject);
-    // console.log("updated proj " + this.currentProject);
+    this.appService.updateProject(this.currentProject);
     console.log(this.currentProject);
     return newToDo;
   }

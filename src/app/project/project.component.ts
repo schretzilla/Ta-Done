@@ -16,43 +16,44 @@ import { log } from 'util';
 
 export class ProjectComponent implements OnInit {
 
-    //List of projects
-    projects = [];
-    currentProject = null;
-    projectId = 1;
+	//List of projects
+	projects = [];
+	currentProject = null;
+	projectId = 1;
 
-    // Subscription
-    subscription: Subscription;
+	// Subscription
+	subscription: Subscription;
 
-    //Constructor
-    constructor(private appService: AppService) {
-        //TODO is this needed? 
-        this.appService.currentProjectChanged$.subscribe(
-            project => {
-                console.log("Project Comp here")
-            }
-        );
-    }
+	//Constructor
+	constructor(private appService: AppService) {
+		//TODO is this needed? 
+		this.appService.currentProjectChanged$.subscribe(
+				project => {
+						console.log("Project Comp here")
+				}
+		);
+	}
 
-    ngOnInit() {
-        this.projects =this.appService.getProjects();
-    }
+	ngOnInit() {
+		this.projects =this.appService.getProjects();
+	}
 
-    //Adds a new project to the projects list
-    addProject() {
-        let newProject = new Project(this.projectId);
-        newProject.name = "New Project";
-        this.projects.push(newProject);
+	//Adds a new project to the projects list
+	addProject() {
+		let newProject = new Project(this.projectId);
+		newProject.name = "New Project";
+		this.projects.push(newProject);
 
-        //increment project id
-        this.projectId+=1;    
-        localStorage.setItem('projects', JSON.stringify(this.projects));
-    }
+		//increment project id
+		this.projectId+=1;    
+		localStorage.setItem('projects', JSON.stringify(this.projects));
+	}
 
-    // Sets the selected project as the current project
-    onProjectSelect(selectedProject: Project){
-        this.currentProject = selectedProject;
-        this.appService.currentProjectChanged(selectedProject);
-        
-    }
+	//TODO: possibly delete
+	// Sets the selected project as the current project
+	onProjectSelect(selectedProject: Project){
+		this.currentProject = selectedProject;
+		this.appService.currentProjectChanged(selectedProject);
+			
+	}
 }

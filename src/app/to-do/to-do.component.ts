@@ -16,47 +16,54 @@ import { Project } from '../project/project';
 export class ToDoComponent {
     listId = 2;
 
-    currentProject = new Project(1);
+    currentProject = null;
 
     subscription: Subscription;
 
     constructor(private appService: AppService){
+      let projects = this.appService.getProjects();
+      this.currentProject = projects[0];
+      console.log("looking at current porject value " + this.currentProject);
       this.subscription = appService.currentProjectChanged$.subscribe(
         project => {
+          console.log("Hears project change to " + project.name);
           this.currentProject = project;
-          //console.log("Project changed in todo");
         }
       );
       
     }
 
     // On Enter key add a todo to the todo list
-  onEnterKey(event: KeyboardEvent, curItem: ToDo) {
-    var index = this.currentProject.toDoList.indexOf(curItem);
+  // onEnterKey(event: KeyboardEvent, curItem: ToDo) {
+  //   var index = this.currentProject.toDoList.indexOf(curItem);
     
-    this.listId += 1;
+  //   this.listId += 1;
     
-    let newToDo = this.addToDo(index);
+  //   let newToDo = this.addToDo(index);
 
-    // var newToDo = new ToDo(this.currentProject, this.listId, "");
-    // this.currentProject.toDoList.splice(index+1, 0, newToDo);  
+  //   // var newToDo = new ToDo(this.currentProject, this.listId, "");
+  //   // this.currentProject.toDoList.splice(index+1, 0, newToDo);  
     
-    //increment the list id of the todos
-    //TODO: this can just be the lenght of the list
+  //   //increment the list id of the todos
+  //   //TODO: this can just be the lenght of the list
     
-    //this.currentProject.toDoList.push(newToDo);
-    // Set cursor focus 
-    //this.setFocusOnInput(newToDo);
+  //   //this.currentProject.toDoList.push(newToDo);
+  //   // Set cursor focus 
+  //   //this.setFocusOnInput(newToDo);
 
-    // let newElement = document.getElementById("To-Do-Item-"+newToDo.id);
-    // console.log(newToDo.id);
-    // console.log(newElement.id);
+  //   // let newElement = document.getElementById("To-Do-Item-"+newToDo.id);
+  //   // console.log(newToDo.id);
+  //   // console.log(newElement.id);
     
-  }
+  // }
 
   addToDo(index: number){
     var newToDo = new ToDo(this.currentProject, this.listId, "");
-    this.currentProject.toDoList.splice(index+1, 0, newToDo);  
+    // this.currentProject.toDoList.splice(index+1, 0, newToDo);  
+    this.currentProject.toDoList.push(newToDo);
+    // this.appService.updateProject(this.currentProject);
+    // console.log("updated proj " + this.currentProject);
+    console.log(this.currentProject);
     return newToDo;
   }
 

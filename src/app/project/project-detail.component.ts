@@ -11,11 +11,10 @@ import { AppService } from '../app.service';
 export class ProjectDetailComponent {
   @Input() project: Project;
 
+  //TODO remove
   constructor(private appService: AppService){
     appService.currentProjectChanged$.subscribe(
-      project => {
-        console.log("project details hears it");
-        
+      project => {        
       }
     );
   }

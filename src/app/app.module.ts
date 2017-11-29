@@ -34,7 +34,7 @@ const appRoutes: Routes = [
     FormsModule, // <-- import the FormsModule before binding with [(ngModel)]
     RouterModule.forRoot(   //TODO split into it's own routing module file
       appRoutes,
-      { enableTracing: true } //for debugging purposes
+      // { enableTracing: true } //for debugging purposes
     )
   ],
   providers: [],

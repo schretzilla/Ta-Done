@@ -18,28 +18,19 @@ export class ProjectSidebarComponent implements OnInit{
     //List of projects
     projects = [];
     currentProject = null;
-    projectId = 1;
+    projectId = JSON.parse(localStorage.getItem('projects')).length;
 
     // Subscription
     subscription: Subscription;
 
     //Constructor
     constructor(private appService: AppService) {
-			// Initialize first project
-			// let firstProject = new Project(1);
-			// firstProject.name = "My First Project";
-			// this.projects.push(firstProject);
-
 			this.appService.currentProjectChanged$.subscribe(
 					project => {
 							console.log("Project Comp here")
 					}
 			);
-			console.log(this.currentProject);
-			
-			let testProject = JSON.parse(localStorage.getItem('projects'));
-			
-			console.log('test project storage ' + testProject.name);
+			console.log("Current Project " + this.currentProject);
     }
 
     ngOnInit() {
@@ -66,9 +57,9 @@ export class ProjectSidebarComponent implements OnInit{
 
     // Sets the selected project as the current project
     onProjectSelect(selectedProject: Project){
+			console.log("Project changed in project comp to " + selectedProject.name);			
 			this.currentProject = selectedProject;
 			this.appService.currentProjectChanged(selectedProject);
-			console.log("Project changed in project comp");
         
     }
 }

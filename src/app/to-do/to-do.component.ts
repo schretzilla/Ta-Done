@@ -72,12 +72,14 @@ export class ToDoComponent {
   completeItem(curItem: ToDo){
     this.removeItem(curItem, this.currentProject.toDoList);
     this.currentProject.doneList.unshift(curItem);
+    this.appService.updateProject(this.currentProject);        
   }
 
   // Move an item from the completed list back to the ToDo list
   unCompleteItem(curItem: ToDo){
     this.removeItem(curItem, this.currentProject.doneList);    
     this.currentProject.toDoList.unshift(curItem);
+    this.appService.updateProject(this.currentProject);        
   }
 
   onDeleteKey(event: KeyboardEvent, curItem: ToDo) {

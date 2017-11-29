@@ -15,7 +15,8 @@
 									[id]="'To-Do-Item-'+todo.id"
 									(keyup.enter)="onEnterKey($event, todo)" 
 									(keyup.backspace)="onDeleteKey($event, todo)"
-									[(ngModel)]="todo.message">
+									[(ngModel)]="todo.message"
+									(ngModelChange)="toDoMessageChange(todo)">
 		
 					<button type="button" 
 					class="btn btn-primary btn-sm" 

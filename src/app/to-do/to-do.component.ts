@@ -64,6 +64,10 @@ export class ToDoComponent {
     return newToDo;
   }
 
+  toDoMessageChange(curToDo: ToDo) {
+    this.appService.updateProject(this.currentProject);    
+  }
+
   // Move an item from the To Do list to the completed list
   completeItem(curItem: ToDo){
     this.removeItem(curItem, this.currentProject.toDoList);

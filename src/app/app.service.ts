@@ -10,13 +10,20 @@ export class AppService {
 
   // Observable string sources
   private CurrentProjectChangedSource = new Subject<Project>();
-
   // Observable string streams
   currentProjectChanged$ = this.CurrentProjectChangedSource.asObservable();
-
   // Service message commands
   currentProjectChanged(projectName: Project) {
     this.CurrentProjectChangedSource.next(projectName);
+  }
+
+  // Observable string sources
+  private ProjectListChangedSource = new Subject<Project[]>();
+  //Observable string streams
+  projectListChanged$ = this.ProjectListChangedSource.asObservable();
+  // Service message commands
+  projectListChanged(projectList: Project[]){
+    this.ProjectListChangedSource.next(projectList);
   }
 
   //TODO Split out into project services before this gets too busy
@@ -54,13 +61,19 @@ export class AppService {
     let projects = JSON.parse(localStorage.getItem('projects')); 
     console.log("Project added" + projects); 
     projects.push(newProject);
-    localStorage.setItem('projects', JSON.stringify(projects));    
+    localStorage.setItem('projects', JSON.stringify(projects)); 
+    
+    //TODO notify the service here
   }
 
   // Deletes the specified project from storage
   deleteProject(projectToDelete: Project){
+
     //get the current projects list
     let projects = this.getProjects();
+    
+    //TEST Setting cur project in service
+    this.currentProjectChanged(projects[0]);    
     
     //find the index of the current project to udpate
     let projectToUpdate = projects.find(x => x.id == projectToDelete.id);
@@ -71,6 +84,9 @@ export class AppService {
 
     //persist the projects to local storage
     localStorage.setItem('projects', JSON.stringify(projects));
+    
+    // Notify that the projects list has changed
+    this.projectListChanged(projects);
   }
 
 }

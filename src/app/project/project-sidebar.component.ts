@@ -31,6 +31,12 @@ export class ProjectSidebarComponent implements OnInit{
 					}
 			);
 			console.log("Current Project " + this.currentProject);
+			
+			this.appService.projectListChanged$.subscribe(
+					projects => {
+							this.projects = projects;
+					}
+			)
     }
 
     ngOnInit() {

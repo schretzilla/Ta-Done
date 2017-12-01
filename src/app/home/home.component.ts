@@ -39,6 +39,11 @@ export class HomeComponent {
     console.log(nextItem.id);
     nextElement.focus();
   }
+
+  //Delete the selected project from local storage
+  deleteProject(project: Project){
+    this.appService.deleteProject(project);
+  }
 }
 
 

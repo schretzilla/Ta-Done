@@ -57,4 +57,20 @@ export class AppService {
     localStorage.setItem('projects', JSON.stringify(projects));    
   }
 
+  // Deletes the specified project from storage
+  deleteProject(projectToDelete: Project){
+    //get the current projects list
+    let projects = this.getProjects();
+    
+    //find the index of the current project to udpate
+    let projectToUpdate = projects.find(x => x.id == projectToDelete.id);
+    let indexOfProject = projects.indexOf(projectToUpdate);
+
+    // remove the project from the list
+    projects.splice(indexOfProject, 1);
+
+    //persist the projects to local storage
+    localStorage.setItem('projects', JSON.stringify(projects));
+  }
+
 }

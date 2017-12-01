@@ -11,16 +11,26 @@
           <ng-container *ngIf="currentProject==null; else currentProjectExists">
             <h1>Welcome!</h1>
             <p>Click the "Create a Project" button on the left to create your
-              first project.
+              first project. Once a project is created you may select it to add 
+              a To Do item.
             </p>
           </ng-container>
           <ng-template #currentProjectExists>
-              <h1>Project:
-                  <input id={{currentProject.id}} [(ngModel)]="currentProject.name"
-                  (ngModelChange)="projectNameChange(currentProject)">
-              </h1> 
-                
-              <to-do [currentProject] = "currentProject"></to-do>
+            <div class="row">
+              <div class="col-md-10">
+                <h1>Project:
+                    <input id={{currentProject.id}} [(ngModel)]="currentProject.name"
+                    (ngModelChange)="projectNameChange(currentProject)">
+                </h1> 
+              </div>
+              <div class="col-md-2">
+                <button class="btn btn-primary btn-sm" 
+                (click)=deleteProject(currentProject)>Text</button>
+              </div>
+            </div>
+            <div class="row">
+                <to-do [currentProject] = "currentProject"></to-do>
+            </div>
           </ng-template>
         </main>
         

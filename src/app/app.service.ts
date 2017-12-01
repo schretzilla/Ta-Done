@@ -52,14 +52,11 @@ export class AppService {
 
     // persist that to storage
     localStorage.setItem('projects', JSON.stringify(projects));
-
-    console.log("updated Proj Service " + projects[indexOfProjToUpdate].toDoList);
   }
 
   // Add a new project to the project local storage
   addProjects(newProject: Project) {
     let projects = JSON.parse(localStorage.getItem('projects')); 
-    console.log("Project added" + projects); 
     projects.push(newProject);
     localStorage.setItem('projects', JSON.stringify(projects)); 
     
@@ -70,14 +67,11 @@ export class AppService {
   deleteProject(projectToDelete: Project){
 
     //get the current projects list
-    let projects = this.getProjects();
-    
-    //TEST Setting cur project in service
-    this.currentProjectChanged(projects[0]);    
+    let projects = this.getProjects();  
     
     //find the index of the current project to udpate
-    let projectToUpdate = projects.find(x => x.id == projectToDelete.id);
-    let indexOfProject = projects.indexOf(projectToUpdate);
+    let projectToRemove = projects.find(x => x.id == projectToDelete.id);
+    let indexOfProject = projects.indexOf(projectToRemove);
 
     // remove the project from the list
     projects.splice(indexOfProject, 1);

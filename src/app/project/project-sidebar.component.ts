@@ -24,14 +24,7 @@ export class ProjectSidebarComponent implements OnInit{
     subscription: Subscription;
 
     //Constructor
-    constructor(private appService: AppService) {
-			this.appService.currentProjectChanged$.subscribe(
-					project => {
-							console.log("Project Comp here")
-					}
-			);
-			console.log("Current Project " + this.currentProject);
-			
+    constructor(private appService: AppService) {		
 			this.appService.projectListChanged$.subscribe(
 					projects => {
 							this.projects = projects;
@@ -51,9 +44,6 @@ export class ProjectSidebarComponent implements OnInit{
 			// this.projects.push(newProject);
 			this.appService.addProjects(newProject);
 
-			// let whipeProjects = [];
-			// localStorage.setItem('projects', JSON.stringify(whipeProjects)); 
-					
 			//increment project id
 			this.projectId+=1;
 
@@ -63,9 +53,7 @@ export class ProjectSidebarComponent implements OnInit{
 
     // Sets the selected project as the current project
     onProjectSelect(selectedProject: Project){
-			console.log("Project changed in project comp to " + selectedProject.name);			
 			this.currentProject = selectedProject;
 			this.appService.currentProjectChanged(selectedProject);
-        
     }
 }

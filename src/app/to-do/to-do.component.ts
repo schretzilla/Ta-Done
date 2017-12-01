@@ -23,7 +23,6 @@ export class ToDoComponent {
   subscription: Subscription;
 
   constructor(private appService: AppService){
-    console.log("looking at current porject value " + this.currentProject);
     this.subscription = appService.currentProjectChanged$.subscribe(
       project => {
         this.currentProject = project;
@@ -60,7 +59,6 @@ export class ToDoComponent {
     var newToDo = new ToDo(this.currentProject, this.listId, "");
     this.currentProject.toDoList.push(newToDo);
     this.appService.updateProject(this.currentProject);
-    console.log(this.currentProject);
     return newToDo;
   }
 

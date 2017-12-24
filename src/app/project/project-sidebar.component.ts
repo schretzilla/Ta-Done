@@ -2,58 +2,58 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Project } from './project';
 
 // Services
-import  { AppService } from '../app.service';
+import  { ProjectService } from '../services/project.service';
 import { Subscription } from 'rxjs/Subscription';
 import { log } from 'util';
 
 
 @Component({
-    selector: 'project-sidebar',
-    templateUrl: 'project-sidebar.component.html',
-    styleUrls: ['../app.component.css'],    
+	selector: 'project-sidebar',
+	templateUrl: 'project-sidebar.component.html',
+	styleUrls: ['../app.component.css'],    
 })
 
 export class ProjectSidebarComponent implements OnInit{
 
-    //List of projects
-    projects = [];
-    currentProject = null;
-    projectId = JSON.parse(localStorage.getItem('projects')).length;
+	//List of projects
+	projects = [];
+	currentProject = null;
+	projectId = JSON.parse(localStorage.getItem('projects')).length;
 
-    // Subscription
-    subscription: Subscription;
+	// Subscription
+	subscription: Subscription;
 
-    //Constructor
-    constructor(private appService: AppService) {		
-			this.appService.projectListChanged$.subscribe(
-					projects => {
+	//Constructor
+	constructor(private appService: ProjectService) {		
+		this.appService.projectListChanged$.subscribe(
+			projects => {
 							this.projects = projects;
-					}
-			)
-    }
+			}
+		)
+	}
 
-    ngOnInit() {
-			// Load the sessions projects
-			this.projects = this.appService.getProjects();
-    }
+	ngOnInit() {
+		// Load the sessions projects
+		this.projects = this.appService.getProjects();
+	}
 
-    //Adds a new project to the projects list
-    addProject() {
-			let newProject = new Project(this.projectId);
-			newProject.name = "New Project";
-			// this.projects.push(newProject);
-			this.appService.addProjects(newProject);
+	//Adds a new project to the projects list
+	addProject() {
+		let newProject = new Project(this.projectId);
+		newProject.name = "New Project";
+		// this.projects.push(newProject);
+		this.appService.addProjects(newProject);
 
-			//increment project id
-			this.projectId+=1;
+		//increment project id
+		this.projectId+=1;
 
-			//update list of projects
-      this.projects = this.appService.getProjects();
-    }
+		//update list of projects
+		this.projects = this.appService.getProjects();
+	}
 
-    // Sets the selected project as the current project
-    onProjectSelect(selectedProject: Project){
-			this.currentProject = selectedProject;
-			this.appService.currentProjectChanged(selectedProject);
-    }
+	// Sets the selected project as the current project
+	onProjectSelect(selectedProject: Project){
+		this.currentProject = selectedProject;
+		this.appService.currentProjectChanged(selectedProject);
+	}
 }

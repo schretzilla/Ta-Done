@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 
 // Services
-import { AppService } from '../app.service';
+import { ProjectService } from '../services/project.service';
 import { Subscription }   from 'rxjs/Subscription';
 
 // Necessary Classs
@@ -22,8 +22,8 @@ export class ToDoComponent {
 
   subscription: Subscription;
 
-  constructor(private appService: AppService){
-    this.subscription = appService.currentProjectChanged$.subscribe(
+  constructor(private projectService: ProjectService){
+    this.subscription = projectService.currentProjectChanged$.subscribe(
       project => {
         this.currentProject = project;
       }
@@ -58,26 +58,26 @@ export class ToDoComponent {
   addToDo(index: number){
     var newToDo = new ToDo(this.currentProject, this.listId, "");
     this.currentProject.toDoList.push(newToDo);
-    this.appService.updateProject(this.currentProject);
+    this.projectService.updateProject(this.currentProject);
     return newToDo;
   }
 
   toDoMessageChange(curToDo: ToDo) {
-    this.appService.updateProject(this.currentProject);    
+    this.projectService.updateProject(this.currentProject);    
   }
 
   // Move an item from the To Do list to the completed list
   completeItem(curItem: ToDo){
     this.removeItem(curItem, this.currentProject.toDoList);
     this.currentProject.doneList.unshift(curItem);
-    this.appService.updateProject(this.currentProject);        
+    this.projectService.updateProject(this.currentProject);        
   }
 
   // Move an item from the completed list back to the ToDo list
   unCompleteItem(curItem: ToDo){
     this.removeItem(curItem, this.currentProject.doneList);    
     this.currentProject.toDoList.unshift(curItem);
-    this.appService.updateProject(this.currentProject);        
+    this.projectService.updateProject(this.currentProject);        
   }
 
   onDeleteKey(event: KeyboardEvent, curItem: ToDo) {

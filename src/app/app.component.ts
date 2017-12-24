@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 // Services
-import { AppService } from './app.service';
+import { ProjectService } from './services/project.service';
 
 // Necessary Classes
 import { ToDo } from './to-do/to-do';
@@ -11,7 +11,7 @@ import { Project } from './project/project';
   selector: 'app-root',
   templateUrl: 'app.component.html',
   styleUrls: ['./app.component.css'],
-  providers: [AppService]
+  providers: [ProjectService]
 })
 
 export class AppComponent {
@@ -20,8 +20,8 @@ export class AppComponent {
   //The ToDo in current focus
   currentProject = null;
 
-  constructor(private appService: AppService){
-    appService.currentProjectChanged$.subscribe(
+  constructor(private projectService: ProjectService){
+    projectService.currentProjectChanged$.subscribe(
       project => {
         this.currentProject = project;
         console.log("Project changed in app");

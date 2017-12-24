@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Project } from './project';
 
 // Services
-import  { AppService } from '../app.service';
+import  { ProjectService } from '../services/project.service';
 import { Subscription } from 'rxjs/Subscription';
 import { log } from 'util';
 
@@ -27,9 +27,9 @@ export class ProjectComponent implements OnInit {
 	subscription: Subscription;
 
 	//Constructor
-	constructor(private appService: AppService) {
+	constructor(private ProjectService: ProjectService) {
 		//TODO is this needed? 
-		this.appService.currentProjectChanged$.subscribe(
+		this.ProjectService.currentProjectChanged$.subscribe(
 				project => {
 						console.log("Project Comp here")
 				}
@@ -37,7 +37,7 @@ export class ProjectComponent implements OnInit {
 	}
 
 	ngOnInit() {		
-		this.projects =this.appService.getProjects();
+		this.projects =this.ProjectService.getProjects();
 		this.projectId = this.getMaxProjectId();
 	}
 

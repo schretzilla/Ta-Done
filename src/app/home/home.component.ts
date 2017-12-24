@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 // Services
-import { AppService } from '../app.service';
+import { ProjectService } from '../services/project.service';
 
 // Necessary Classes
 import { ToDo } from '../to-do/to-do';
@@ -12,7 +12,7 @@ import { log } from 'util';
   selector: 'home',
   templateUrl: 'home.component.html',
   styleUrls: ['./home.component.css'],
-  providers: [AppService]
+  providers: [ProjectService]
 })
 
 export class HomeComponent {
@@ -21,8 +21,8 @@ export class HomeComponent {
   //The ToDo in current focus
   currentProject = null;
 
-  constructor(private appService: AppService){
-    appService.currentProjectChanged$.subscribe(
+  constructor(private ProjectService: ProjectService){
+    ProjectService.currentProjectChanged$.subscribe(
       project => {
         this.currentProject = project;        
       }
@@ -31,7 +31,7 @@ export class HomeComponent {
 
   // Persist project name changes to storage
   projectNameChange(currentProject: Project){
-    this.appService.updateProject(currentProject);
+    this.ProjectService.updateProject(currentProject);
   }
 
   setFocusOnInput(nextItem: ToDo){
@@ -42,9 +42,9 @@ export class HomeComponent {
   //Delete the selected project from local storage
   deleteProject(project: Project){
     //Set the current project to null to change the page 
-    this.appService.currentProjectChanged(null);  
+    this.ProjectService.currentProjectChanged(null);  
 
-    this.appService.deleteProject(project);
+    this.ProjectService.deleteProject(project);
   }
 }
 

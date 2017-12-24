@@ -39,6 +39,7 @@ export class AppService {
     return projects;
   }
 
+  // Updates a project and persists it to storage
   updateProject(curProject: Project) {
     //get the current projects list
     let projects = this.getProjects();
@@ -60,7 +61,8 @@ export class AppService {
     projects.push(newProject);
     localStorage.setItem('projects', JSON.stringify(projects)); 
     
-    //TODO notify the service here
+    // Notify that the projects list has changed
+    this.projectListChanged(projects);
   }
 
   // Deletes the specified project from storage

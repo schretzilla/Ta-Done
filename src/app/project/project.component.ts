@@ -52,14 +52,6 @@ export class ProjectComponent implements OnInit {
 		localStorage.setItem('projects', JSON.stringify(this.projects));
 	}
 
-	//TODO: possibly delete
-	// Sets the selected project as the current project
-	onProjectSelect(selectedProject: Project){
-		this.currentProject = selectedProject;
-		this.appService.currentProjectChanged(selectedProject);
-			
-	}
-
 	// Find the next ID for the list of projects
 	// TODO: Use until database is created
 	getMaxProjectId(){

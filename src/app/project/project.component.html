@@ -1,25 +1,21 @@
+<!-- Used for projects page -->
 <body>
   <app-header></app-header>
 
   <div class="container-fluid">
     <div class="row">
       <div class="col-sm-6 col-sm-offset-3">
-        <h1>Projects <button type="button" class="btn btn-success btn-large" 
+        <h1>Projects</h1>
+        <button type="button" class="btn btn-success btn-large" 
           (click)="addProject()">
             Add 
           </button>
-        </h1>
 
         <!-- <ul> -->
           <h2 *ngFor="let project of projects" 
             (click)="onProjectSelect(project)">
             <a> <!-- add active -->
-              <ng-container *ngIf="project.name != ''; else projectNameless" >
-                  {{project.name}}
-              </ng-container>
-              <ng-template #projectNameless>
-                  [No Name]
-              </ng-template>
+              <project-detail [project]="project"></project-detail>          
           </a>     
         </h2>
         <!-- </ul> -->

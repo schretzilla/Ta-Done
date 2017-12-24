@@ -120,7 +120,7 @@ export class ToDoComponent {
     for(let i=0; i<todoList.length; i++){
       let curToDo = todoList[i];
       //Increment the max id when a greater ele id is found
-      if(curToDo.id > maxId){
+      if(curToDo.id >= maxId){
         maxId = curToDo.id + 1;
       }
     }

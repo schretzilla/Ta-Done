@@ -28,34 +28,28 @@ export class ToDoComponent {
     
   }
 
-    // On Enter key add a todo to the todo list
-  // onEnterKey(event: KeyboardEvent, curItem: ToDo) {
-  //   var index = this.currentProject.toDoList.indexOf(curItem);
-    
-  //   this.listId += 1;
-    
-  //   let newToDo = this.addToDo(index);
+  // On Enter key add a todo to the todo list
+  onEnterKey(event: KeyboardEvent, curItem: ToDo) {
+    var index = this.currentProject.toDoList.indexOf(curItem);
+        
+    let newToDo = this.addToDo(index);
 
-  //   // var newToDo = new ToDo(this.currentProject, this.listId, "");
-  //   // this.currentProject.toDoList.splice(index+1, 0, newToDo);  
-    
-  //   //increment the list id of the todos
-  //   //TODO: this can just be the lenght of the list
-    
-  //   //this.currentProject.toDoList.push(newToDo);
-  //   // Set cursor focus 
-  //   //this.setFocusOnInput(newToDo);
+    // Update current project
+    this.projectService.updateProject(this.currentProject);
 
-  //   // let newElement = document.getElementById("To-Do-Item-"+newToDo.id);
-  //   // console.log(newToDo.id);
-  //   // console.log(newElement.id);
-    
-  // }
+    // TODO: find way to set focus to element after it is created
+    // Set focus on newly aded element
+    // var nextElement = document.getElementById(newToDo.htmlId);
+    // nextElement.focus();
+  }
 
+  //Adds an element to the specified index of the todo list
+  //<param index> index to add an element to
   addToDo(index: number){
     //Get the next availalbe ID
     let listId = this.getNextToDoId();
     var newToDo = new ToDo(this.currentProject, listId, "");
+    //TODO: Insert into array at index not just at end
     this.currentProject.toDoList.push(newToDo);
     this.projectService.updateProject(this.currentProject);
 
@@ -98,9 +92,7 @@ export class ToDoComponent {
       }
 
       var nextElement = document.getElementById(nextItem.htmlId);
-      console.log(nextItem.id);
       nextElement.focus();
-      
     }
 
     // Update current project

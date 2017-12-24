@@ -14,9 +14,6 @@ import { Project } from '../project/project';
   })
 
 export class ToDoComponent {
-
-  listId = 2;
-
   // The project in focus
   @Input() currentProject: Project;
 
@@ -56,9 +53,12 @@ export class ToDoComponent {
   // }
 
   addToDo(index: number){
-    var newToDo = new ToDo(this.currentProject, this.listId, "");
+    //Get the next availalbe ID
+    let listId = this.getNextToDoId();
+    var newToDo = new ToDo(this.currentProject, listId, "");
     this.currentProject.toDoList.push(newToDo);
     this.projectService.updateProject(this.currentProject);
+
     return newToDo;
   }
 
@@ -97,18 +97,34 @@ export class ToDoComponent {
         nextItem = this.currentProject.toDoList[curIndex-1];
       }
 
-    //   this.setFocusOnInput(nextItem);
-    //   // var nextElement = document.getElementById(String(nextItem.id));
-    //   // console.log(nextItem.id);
-    //   // nextElement.focus();
+      var nextElement = document.getElementById(nextItem.htmlId);
+      console.log(nextItem.id);
+      nextElement.focus();
       
-    // }
     }
+
+    // Update current project
+    this.projectService.updateProject(this.currentProject);
   }
 
   // Remove an item from the specified list
   private removeItem(itemToRemove: ToDo, listToRemoveFrom: ToDo[]){
     let curIndex = listToRemoveFrom.indexOf(itemToRemove);
     listToRemoveFrom.splice(curIndex, 1);
+  }
+
+  // Gets the next ID for a new to-do item
+  private getNextToDoId(){
+    let todoList = this.currentProject.toDoList;
+    let maxId = 0;
+    for(let i=0; i<todoList.length; i++){
+      let curToDo = todoList[i];
+      //Increment the max id when a greater ele id is found
+      if(curToDo.id > maxId){
+        maxId = curToDo.id + 1;
+      }
+    }
+
+    return maxId;
   }
 }

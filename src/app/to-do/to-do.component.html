@@ -12,7 +12,7 @@
 		<ul>
 			<li *ngFor="let todo of currentProject.toDoList">
 					<input
-									[id]="'To-Do-Item-'+todo.id"
+									[id]="todo.htmlId"
 									(keyup.enter)="onEnterKey($event, todo)" 
 									(keyup.backspace)="onDeleteKey($event, todo)"
 									[(ngModel)]="todo.message"

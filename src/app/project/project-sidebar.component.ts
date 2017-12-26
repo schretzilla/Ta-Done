@@ -10,7 +10,7 @@ import { log } from 'util';
 @Component({
 	selector: 'project-sidebar',
 	templateUrl: 'project-sidebar.component.html',
-	styleUrls: ['../app.component.css'],    
+	styleUrls: ['./project-sidebar.component.css'],    
 })
 
 export class ProjectSidebarComponent implements OnInit{

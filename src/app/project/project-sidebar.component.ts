@@ -14,12 +14,14 @@ import { log } from 'util';
 })
 
 export class ProjectSidebarComponent implements OnInit{
+	// Menu Selected var
+	menuOpen = true;
 
 	//List of projects
 	projects = [];
 	currentProject = null;
 	projectId = JSON.parse(localStorage.getItem('projects')).length;
-
+	
 	// Subscription
 	subscription: Subscription;
 
@@ -55,5 +57,11 @@ export class ProjectSidebarComponent implements OnInit{
 	onProjectSelect(selectedProject: Project){
 		this.currentProject = selectedProject;
 		this.appService.currentProjectChanged(selectedProject);
+	}
+
+	// Toggle the sidebar.
+	menuToggle(){
+		//Toggle the menu bool
+		this.menuOpen = !this.menuOpen;
 	}
 }

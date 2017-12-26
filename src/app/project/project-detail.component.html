@@ -1,10 +1,10 @@
 <a> <!-- add active -->
-    <!-- <ng-container *ngIf="project.name != ''; else projectNameless" > -->
+    <ng-container *ngIf="project.name != ''; else projectNameless" >
         {{project.name}}
-    <!-- </ng-container>
+    </ng-container>
     <ng-template #projectNameless>
         [No Name]
-    </ng-template> -->
+    </ng-template>
     <span class="sub_icon glyphicon glyphicon-link"></span>
 </a>
 

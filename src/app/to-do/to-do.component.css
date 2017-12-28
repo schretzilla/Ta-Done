@@ -1,5 +1,5 @@
 /* ToDo List neds no bullets */
-#To-Do-List{
+.To-Do-List{
   list-style-type: none ;
   padding: 0;
   margin: 0;

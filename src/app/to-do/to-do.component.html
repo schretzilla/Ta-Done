@@ -1,5 +1,5 @@
 <div class="row">
-	<div class="col-sm-12">
+	<div class="col-sm-6">
 		<h2>
 			To Do:                         
 			<button type="button" class="btn btn-success btn-sm" (click)=addToDo(0)
@@ -12,16 +12,9 @@
 			You've got nothing to do for this project!
 		</ul>
 
-		<ul id="To-Do-List">
+		<ul class="To-Do-List">
 			<li *ngFor="let todo of currentProject.toDoList">
 				<div class="input-group">
-					<input
-					[id]="todo.htmlId" type="text" class="form-control"
-					(keyup.enter)="onEnterKey($event, todo)" 
-					(keyup.backspace)="onDeleteKey($event, todo)"
-					[(ngModel)]="todo.message"
-					(ngModelChange)="toDoMessageChange(todo)">
-
 					<span class="input-group-btn">
 						<button type="button" 
 						class="btn btn-primary" 
@@ -30,28 +23,43 @@
 							<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
 						</button>
 					</span>	
+
+					<input
+					[id]="todo.htmlId" type="text" class="form-control"
+					(keyup.enter)="onEnterKey($event, todo)" 
+					(keyup.backspace)="onDeleteKey($event, todo)"
+					[(ngModel)]="todo.message"
+					(ngModelChange)="toDoMessageChange(todo)">
+
+					
 				</div> <!-- End Input Group -->	
 			</li>
 		</ul>
 	</div>
 
-	<div class="col-md-6">
+	<div class="col-sm-6">
 		<h2>Completed</h2>
 		<ul *ngIf="currentProject.doneList.length == 0">
 			<span>
 							Nothing done yet!
 			</span>
 		</ul>
-		<ul>
-				<li *ngFor="let todo of currentProject.doneList">
-					<span id={{todo.id}}>{{todo.message}}</span>
-					<button type="button"
-					class="btn btn-danger btn-sm"
-					(click)=unCompleteItem(todo)
-					title="UnComplete Item">
-					<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-					</button>  
-				</li>
+		<ul class="To-Do-List">
+			<li *ngFor="let todo of currentProject.doneList">
+
+				<div class="input-group">
+					<span class="input-group-btn">
+							<button type="button"
+							class="btn btn-danger btn-sm"
+							(click)=unCompleteItem(todo)
+							title="UnComplete Item">
+							<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+							</button>  
+					</span>
+
+					<span id={{todo.id}} class="form-control">{{todo.message}}</span>
+				</div>					
+			</li>
 		</ul>   
 	</div>
 </div>

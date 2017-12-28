@@ -11,6 +11,9 @@ body {
   border: 0;
 }
 
+/* 
+ * Delete Project button top right corner of screen
+ */
 #Delete-Project-Btn {
   position: absolute;
   top: 0;

@@ -1,10 +1,10 @@
 <div class="row">
-	<div class="col-md-6">
+	<div class="col-sm-12">
 		<h2>
 			To Do:                         
 			<button type="button" class="btn btn-success btn-sm" (click)=addToDo(0)
 			 title="Add new To Do">
-				<span class="glyphicon glyphicon-plus"></span>
+				<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
 			</button>
 		</h2>
 
@@ -12,20 +12,25 @@
 			You've got nothing to do for this project!
 		</ul>
 
-		<ul>
+		<ul id="To-Do-List">
 			<li *ngFor="let todo of currentProject.toDoList">
+				<div class="input-group">
 					<input
-									[id]="todo.htmlId"
-									(keyup.enter)="onEnterKey($event, todo)" 
-									(keyup.backspace)="onDeleteKey($event, todo)"
-									[(ngModel)]="todo.message"
-									(ngModelChange)="toDoMessageChange(todo)">
-		
-					<button type="button" 
-					class="btn btn-primary btn-sm" 
-					(click)=completeItem(todo)
-					title="Complete To Do">
-					<span class="glyphicon glyphicon-ok"></span></button>
+					[id]="todo.htmlId" type="text" class="form-control"
+					(keyup.enter)="onEnterKey($event, todo)" 
+					(keyup.backspace)="onDeleteKey($event, todo)"
+					[(ngModel)]="todo.message"
+					(ngModelChange)="toDoMessageChange(todo)">
+
+					<span class="input-group-btn">
+						<button type="button" 
+						class="btn btn-primary" 
+						(click)=completeItem(todo)
+						title="Complete To Do">
+							<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+						</button>
+					</span>	
+				</div> <!-- End Input Group -->	
 			</li>
 		</ul>
 	</div>
@@ -44,7 +49,7 @@
 					class="btn btn-danger btn-sm"
 					(click)=unCompleteItem(todo)
 					title="UnComplete Item">
-					<span class="glyphicon glyphicon-remove"></span>
+					<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
 					</button>  
 				</li>
 		</ul>   

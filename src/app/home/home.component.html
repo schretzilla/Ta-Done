@@ -14,7 +14,12 @@
         <div class="col-md-12">
           <ng-container *ngIf="currentProject==null; else currentProjectExists">
               <h1>Welcome!</h1>
-              <p>Click the "Create a Project" button on the left to create your
+              <p>Click the  
+                  <button type="button" class="btn btn-success btn-sm" 
+                  (click)="addProject()" title="Add Project">
+                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                  </button>
+                 button on the left to create your
                 first project. Once a project is created you may select it to add 
                 a To Do item.
               </p>
@@ -24,7 +29,7 @@
               <button id="Delete-Project-Btn" class="btn btn-danger btn-sm" 
               (click)=deleteProject(currentProject)
                 title="Delete Project">
-                <span class="glyphicon glyphicon-remove"></span>
+                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
               </button>
 
               <div class="row">

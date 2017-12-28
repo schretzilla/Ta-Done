@@ -3,12 +3,15 @@
 ##Summary
 A To-Do list making application to manage and track projects and tasks.
 
-#Action Items
-Add timing capabilities.
+#Features To Add
+timing capbailities
+Graphing time spent on To Dos and Projects
 Add Drag/Drop reorder capabilities.
+
+#Action Items
 Add Help Page.
 Toggle sidebar should shift main content container.
-To Do buttons need drop downs for complete and timing options. These buttons should be on the left side.
+To Do buttons need drop downs for complete and timing options.
 To Do Inputs should not have lines around them, they should be invisible.
 
 #Versions

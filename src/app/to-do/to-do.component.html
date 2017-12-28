@@ -2,7 +2,10 @@
 	<div class="col-md-6">
 		<h2>
 			To Do:                         
-			<button type="button" class="btn btn-success btn-sm" (click)=addToDo(0)>Add</button>
+			<button type="button" class="btn btn-success btn-sm" (click)=addToDo(0)
+			 title="Add new To Do">
+				<span class="glyphicon glyphicon-plus"></span>
+			</button>
 		</h2>
 
 		<ul *ngIf="currentProject.toDoList.length == 0">
@@ -20,7 +23,9 @@
 		
 					<button type="button" 
 					class="btn btn-primary btn-sm" 
-					(click)=completeItem(todo)>Done!</button>
+					(click)=completeItem(todo)
+					title="Complete To Do">
+					<span class="glyphicon glyphicon-ok"></span></button>
 			</li>
 		</ul>
 	</div>
@@ -37,7 +42,10 @@
 					<span id={{todo.id}}>{{todo.message}}</span>
 					<button type="button"
 					class="btn btn-danger btn-sm"
-					(click)=unCompleteItem(todo)>Not Done!</button>  
+					(click)=unCompleteItem(todo)
+					title="UnComplete Item">
+					<span class="glyphicon glyphicon-remove"></span>
+					</button>  
 				</li>
 		</ul>   
 	</div>

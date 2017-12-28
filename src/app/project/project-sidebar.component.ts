@@ -15,6 +15,7 @@ import { log } from 'util';
 
 export class ProjectSidebarComponent implements OnInit{
 	// Menu Selected var
+	// TODO Fix toggle to shift main project content over
 	menuOpen = true;
 
 	//List of projects
